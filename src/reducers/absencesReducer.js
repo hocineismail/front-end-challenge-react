@@ -45,6 +45,11 @@ export function absencesReducer(state = initialState, action) {
         ...state,
         page: state.page > 0 ? state.page - 1 : 0,
       };
+    case "GO_TO_PAGE":
+      return {
+        ...state,
+        page: action.payload.page,
+      };
 
     default:
       return state;
