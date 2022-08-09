@@ -4,7 +4,12 @@ import axios from "axios";
 import {
   FETCHED_ABSENCES_ERROR,
   FETCHED_ABSENCES_SUCCESS,
+  GO_TO_PAGE,
+  NEXT_PAGE,
+  ON_FILTER,
+  PREVIOUS_PAGE,
 } from "../constants/constants";
+import { applyFilter } from "../utils/filter";
 // import AbsencesContext from "./AbsencesContext";
 //Context and Provider
 export const AbsencesContext = React.createContext(initialState);
@@ -26,6 +31,7 @@ const Provider = ({ children }) => {
             type: FETCHED_ABSENCES_SUCCESS,
             payload: {
               absences: data.absences,
+              types: data.types,
             },
           });
         })
@@ -37,12 +43,65 @@ const Provider = ({ children }) => {
     },
     nextPage: () => {
       dispatch({
-        type: "NEXT_PAGE",
+        type: NEXT_PAGE,
       });
     },
     prevPage: () => {
       dispatch({
-        type: "PREVIOUS_PAGE",
+        type: PREVIOUS_PAGE,
+      });
+    },
+    goToPage: (page) => {
+      dispatch({
+        type: GO_TO_PAGE,
+        payload: {
+          page: page,
+        },
+      });
+    },
+    onFilterByType: async (type) => {
+      let filter = {
+        type: type,
+        startDate: state.filter.startDate,
+        endDate: state.filter.endDate,
+      };
+      const absencesFiltred = await applyFilter(filter, state.allData);
+      dispatch({
+        type: ON_FILTER,
+        payload: {
+          absencesFiltred: absencesFiltred,
+          filter: filter,
+        },
+      });
+    },
+    onFilterByStartDate: async (startDate) => {
+      let filter = {
+        type: state.filter.type,
+        startDate: startDate,
+        endDate: state.filter.endDate,
+      };
+      const absencesFiltred = await applyFilter(filter, state.allData);
+      dispatch({
+        type: ON_FILTER,
+        payload: {
+          absencesFiltred: absencesFiltred,
+          filter: filter,
+        },
+      });
+    },
+    onFilterByEndDate: async (endDate) => {
+      let filter = {
+        type: state.filter.type,
+        startDate: state.filter.startDate,
+        endDate: endDate,
+      };
+      const absencesFiltred = await applyFilter(filter, state.allData);
+      dispatch({
+        type: ON_FILTER,
+        payload: {
+          absencesFiltred: absencesFiltred,
+          filter: filter,
+        },
       });
     },
   };

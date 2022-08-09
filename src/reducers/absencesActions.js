@@ -14,10 +14,12 @@ export function onFetchAbsences(dispatch) {
       return response.data;
     })
     .then((data) => {
+      console.log(data);
       dispatch({
         type: FETCHED_ABSENCES_SUCCESS,
         payload: {
           absences: data.absences,
+          types: data.types,
         },
       });
     })

@@ -10,6 +10,12 @@ describe("AbsencesRuducer: ", () => {
     expect(initialState).toEqual({
       allData: [],
       absences: [],
+      types: ["All"],
+      filter: {
+        type: "All",
+        startDate: null,
+        endDate: null,
+      },
       page: 0,
       rowsPerPage: 10,
       totalAbsences: 0,
@@ -23,14 +29,18 @@ describe("AbsencesRuducer: ", () => {
       type: FETCHED_ABSENCES_SUCCESS,
       payload: {
         absences: [1, 2, 3, 4],
+        types: ["works"],
       },
     };
     const updatedState = absencesReducer(initialState, action);
+
     expect(updatedState).toEqual({
       allData: [1, 2, 3, 4],
       absences: [1, 2, 3, 4],
-      page: 0,
       totalAbsences: 4,
+      types: ["All", "works"],
+      filter: { type: "All", startDate: null, endDate: null },
+      page: 0,
       rowsPerPage: 10,
       loading: false,
       errors: "",
@@ -45,8 +55,10 @@ describe("AbsencesRuducer: ", () => {
     expect(updatedState).toEqual({
       allData: [],
       absences: [],
-      page: 0,
       totalAbsences: 0,
+      types: ["All"],
+      filter: { type: "All", startDate: null, endDate: null },
+      page: 0,
       rowsPerPage: 10,
       loading: false,
       errors: "Oups errors, Something wrong",
@@ -57,9 +69,16 @@ describe("AbsencesRuducer: ", () => {
       type: "NOT_CORRECT",
     };
     const updatedState = absencesReducer(initialState, action);
+
     expect(updatedState).toEqual({
       allData: [],
       absences: [],
+      types: ["All"],
+      filter: {
+        type: "All",
+        startDate: null,
+        endDate: null,
+      },
       page: 0,
       totalAbsences: 0,
       rowsPerPage: 10,

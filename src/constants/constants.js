@@ -3,3 +3,4 @@ export const FETCHED_ABSENCES_ERROR = "FETCHED_ABSENCES_ERROR";
 export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const GO_TO_PAGE = "GO_TO_PAGE";
+export const ON_FILTER = "ON_FILTER";
