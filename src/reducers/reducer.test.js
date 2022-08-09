@@ -10,6 +10,9 @@ describe("AbsencesRuducer: ", () => {
     expect(initialState).toEqual({
       allData: [],
       absences: [],
+      page: 0,
+      rowsPerPage: 10,
+      totalAbsences: 0,
       loading: true,
       errors: "",
     });
@@ -26,6 +29,9 @@ describe("AbsencesRuducer: ", () => {
     expect(updatedState).toEqual({
       allData: [1, 2, 3, 4],
       absences: [1, 2, 3, 4],
+      page: 0,
+      totalAbsences: 4,
+      rowsPerPage: 10,
       loading: false,
       errors: "",
     });
@@ -39,6 +45,9 @@ describe("AbsencesRuducer: ", () => {
     expect(updatedState).toEqual({
       allData: [],
       absences: [],
+      page: 0,
+      totalAbsences: 0,
+      rowsPerPage: 10,
       loading: false,
       errors: "Oups errors, Something wrong",
     });
@@ -51,6 +60,9 @@ describe("AbsencesRuducer: ", () => {
     expect(updatedState).toEqual({
       allData: [],
       absences: [],
+      page: 0,
+      totalAbsences: 0,
+      rowsPerPage: 10,
       loading: true,
       errors: "",
     });

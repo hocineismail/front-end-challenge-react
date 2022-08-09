@@ -1,43 +1,72 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Table } from "react-bootstrap";
 
-import { absencesReducer, initialState } from "../../reducers/absencesReducer";
 import TableBody from "../table/TableBody";
 import TableCell from "../table/TableCell";
 import TableHeader from "../table/TableHeader";
 import TableRow from "../table/TableRow";
 
-import { onFetchAbsences } from "../../reducers/absencesActions";
+import Pagination from "../pagination/Pagination";
+import { useAbsencesContext } from "../../context/Provider";
+
 const header = ["Name", "Absence", "Period", "Note", "Status", "Admitter"];
 
 export default function AbsencesManagement() {
   // useReducer for sharing state between components
-  const [state, dispatch] = useReducer(absencesReducer, initialState);
+  const { state, onFetchAbsences } = useAbsencesContext();
+
+  // bsences, page, rowsPerPage, loading get them from reducer state
+  const { absences, page, rowsPerPage, loading } = state;
+
   React.useEffect(() => {
     // Runs only on the first render
-    // onFetchAbsences allows to fetch absences list from server and update reducer state by dispatch
-    onFetchAbsences(dispatch);
-  }, [dispatch]);
+    // onFetchAbsences allows to fetch absences list from server and update reducer state
+    // Run onFetchAbsencs only if  is ready to call and leading is true
+    if (loading) {
+      onFetchAbsences();
+    }
+  }, [onFetchAbsences, loading]);
 
   return (
     <div data-test-id="component-absences-management">
       <Table data-test-id="table-absences-management">
         <TableHeader header={header} />
         <TableBody>
-          {state.absences.map((row) => {
-            return (
-              <TableRow data-test-id="table-absences-rows" key={row.crewId}>
-                <TableCell item={row.name} />
-                <TableCell item={row.type} />
-                <TableCell item={`${row.startDate} to ${row.endDate}`} />
-                <TableCell item={row.memberNote} />
-                <TableCell item={row.status} />
-                <TableCell item={row.admitterNote} />
-              </TableRow>
-            );
-          })}
+          {absences
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((row) => {
+              return (
+                <TableRow data-test-id="table-absences-rows" key={row.crewId}>
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={row.name}
+                  />
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={row.type}
+                  />
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={`${row.startDate} to ${row.endDate}`}
+                  />
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={row.memberNote}
+                  />
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={row.status}
+                  />
+                  <TableCell
+                    data-test-id="table-absences-col"
+                    item={row.admitterNote}
+                  />
+                </TableRow>
+              );
+            })}
         </TableBody>
       </Table>
+      <Pagination />
     </div>
   );
 }

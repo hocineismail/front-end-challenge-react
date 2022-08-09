@@ -1,6 +1,8 @@
 import {
   FETCHED_ABSENCES_ERROR,
   FETCHED_ABSENCES_SUCCESS,
+  NEXT_PAGE,
+  PREVIOUS_PAGE,
 } from "../constants/constants";
 
 // initial state
@@ -8,6 +10,9 @@ import {
 export const initialState = {
   allData: [],
   absences: [],
+  totalAbsences: 0,
+  page: 0,
+  rowsPerPage: 10,
   loading: true,
   errors: "",
 };
@@ -19,6 +24,7 @@ export function absencesReducer(state = initialState, action) {
         ...state,
         allData: action.payload.absences,
         absences: action.payload.absences,
+        totalAbsences: action.payload.absences.length,
         loading: false,
         errors: "",
       };
@@ -29,6 +35,17 @@ export function absencesReducer(state = initialState, action) {
         loading: false,
         errors: "Oups errors, Something wrong",
       };
+    case NEXT_PAGE:
+      return {
+        ...state,
+        page: state.page + 1,
+      };
+    case PREVIOUS_PAGE:
+      return {
+        ...state,
+        page: state.page > 0 ? state.page - 1 : 0,
+      };
+
     default:
       return state;
   }
