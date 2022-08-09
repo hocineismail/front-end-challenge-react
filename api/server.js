@@ -3,6 +3,7 @@ const data = require("./api");
 const app = express();
 
 require("dotenv").config();
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+
 app.get("/api/v1/absences", async (req, res) => {
   const absenceData = await data.absences();
   const memberData = await data.members();
@@ -40,7 +42,7 @@ app.get("/api/v1/absences", async (req, res) => {
       status = "Confirmed";
     }
     let memberDetails = memberMap[user.userId];
-    return { ...user, ...memberDetails };
+    return { ...user, ...memberDetails, status };
   });
   res.status(200).json({
     types: types,
