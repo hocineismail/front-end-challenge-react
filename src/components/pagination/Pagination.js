@@ -9,18 +9,17 @@ export default function PaginationComponent() {
   const [pages, setPages] = React.useState([1, 2, 3, 4, 5]);
 
   React.useEffect(() => {
-    if (page !== 0) {
-      /**
-       * @generatePages  generate onlye five pages the current page and last 2 pages and next 2 pages
-       * @param  {page} number - current page
-       * @param  {totalAbsences} number - length of absences
-       * @param  {rowsPerPage} number - number of row for each page
-       * @return  Array of of number   [54, 55, 56, 57,58]
-       * Example if we have 100 pages, we are on 56 page, this function should return [54, 55, 56, 57,58]
-       */
-      let fivePages = generatePages(page, totalAbsences, rowsPerPage);
-      setPages(fivePages);
-    }
+    /**
+     * @generatePages  generate onlye five pages the current page and last 2 pages and next 2 pages
+     * @param  {page} number - current page
+     * @param  {totalAbsences} number - length of absences
+     * @param  {rowsPerPage} number - number of row for each page
+     * @return  Array of of number   [54, 55, 56, 57,58]
+     * Example if we have 100 pages, we are on 56 page, this function should return [54, 55, 56, 57,58]
+     */
+    let fivePages = generatePages(page, totalAbsences, rowsPerPage);
+
+    setPages(fivePages);
   }, [page, totalAbsences, rowsPerPage]);
 
   const hanldeNextPage = () => {
