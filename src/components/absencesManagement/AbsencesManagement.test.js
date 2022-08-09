@@ -26,9 +26,9 @@ describe("Absences Management Compoenent: ", () => {
     });
     expect(absencesComponent.length).toBe(1);
   });
-  it("render TableHeader withour errors", () => {
+  it("render absences management table", () => {
     const absencesComponent = wrapper.find({
-      "data-test-id": "component-absences-management",
+      "data-test-id": "table-absences-management",
     });
     expect(absencesComponent.length).toBe(1);
   });
