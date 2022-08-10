@@ -18,7 +18,6 @@ export default function PaginationComponent() {
      * Example if we have 100 pages, we are on 56 page, this function should return [54, 55, 56, 57,58]
      */
     let fivePages = generatePages(page, totalAbsences, rowsPerPage);
-
     setPages(fivePages);
   }, [page, totalAbsences, rowsPerPage]);
 
@@ -28,40 +27,47 @@ export default function PaginationComponent() {
   const hanldePrevPage = () => {
     prevPage();
   };
+
   return (
     <div>
-      <Pagination>
-        <Pagination.First
-          data-test-id="button-prev-page"
-          disabled={loading || page === 0}
-          onClick={() => goToPage(0)}
-        />
-        <Pagination.Prev
-          data-test-id="button-prev-page"
-          disabled={loading || page === 0}
-          onClick={() => hanldePrevPage()}
-        />
-        {pages.map((item) => {
-          return (
-            <Pagination.Item
-              key={"page-number-" + item}
-              active={item === page + 1}
-              onClick={() => goToPage(item - 1)}
-            >
-              {item}
-            </Pagination.Item>
-          );
-        })}
-        <Pagination.Next
-          data-test-id="button-next-page"
-          disabled={loading || page * rowsPerPage + rowsPerPage > totalAbsences}
-          onClick={() => hanldeNextPage()}
-        />
-        <Pagination.Last
-          disabled={loading || page * rowsPerPage + rowsPerPage > totalAbsences}
-          onClick={() => goToPage(Math.ceil(totalAbsences / rowsPerPage) - 1)}
-        />
-      </Pagination>
+      {totalAbsences !== 0 ? (
+        <Pagination>
+          <Pagination.First
+            data-test-id="button-prev-page"
+            disabled={loading || page === 0}
+            onClick={() => goToPage(0)}
+          />
+          <Pagination.Prev
+            data-test-id="button-prev-page"
+            disabled={loading || page === 0}
+            onClick={() => hanldePrevPage()}
+          />
+          {pages.map((item) => {
+            return (
+              <Pagination.Item
+                key={"page-number-" + item}
+                active={item === page + 1}
+                onClick={() => goToPage(item - 1)}
+              >
+                {item}
+              </Pagination.Item>
+            );
+          })}
+          <Pagination.Next
+            data-test-id="button-next-page"
+            disabled={
+              loading || page * rowsPerPage + rowsPerPage > totalAbsences
+            }
+            onClick={() => hanldeNextPage()}
+          />
+          <Pagination.Last
+            disabled={
+              loading || page * rowsPerPage + rowsPerPage > totalAbsences
+            }
+            onClick={() => goToPage(Math.ceil(totalAbsences / rowsPerPage) - 1)}
+          />
+        </Pagination>
+      ) : null}
     </div>
   );
 }
