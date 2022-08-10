@@ -29,20 +29,21 @@ app.get("/api/v1/absences", async (req, res) => {
   const sortedData = absenceData.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
-  const slicedPart = sortedData.map((user) => {
-    const isDuplicate = types.includes(user.type);
+  const slicedPart = sortedData.map((absence) => {
+    const isDuplicate = types.includes(absence.type);
     if (!isDuplicate) {
-      types.push(user.type);
+      types.push(absence.type);
     }
     let status = "Requested";
-    if (user.rejectedAt) {
+    if (absence.rejectedAt) {
       status = "Rejected";
     }
-    if (user.confirmedAt) {
+    if (absence.confirmedAt) {
       status = "Confirmed";
     }
-    let memberDetails = memberMap[user.userId];
-    return { ...user, ...memberDetails, status };
+    let memberDetails = memberMap[absence.userId];
+    let { name } = memberDetails;
+    return { ...absence, name, status };
   });
   res.status(200).json({
     types: types,
@@ -50,6 +51,6 @@ app.get("/api/v1/absences", async (req, res) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log(`Example app listening on port ${process.env.PORT}`);
 });
