@@ -9,7 +9,7 @@ import { useAbsencesContext } from "../../context/Provider";
 export default function AbsencesFilter() {
   const { state, onFilterByType, onFilterByStartDate, onFilterByEndDate } =
     useAbsencesContext();
-  const { filter, types, errors } = state;
+  const { filter, types, errors, loading } = state;
 
   return (
     <div data-test-id="component-filter">
@@ -18,7 +18,7 @@ export default function AbsencesFilter() {
           <Form.Label>Filter by type</Form.Label>
           <Form.Select
             aria-label="Default select example"
-            disabled={errors !== ""}
+            disabled={errors !== "" || loading}
             onChange={(e) => onFilterByType(e.target.value)}
           >
             {types.map((item, index) => {
@@ -35,7 +35,7 @@ export default function AbsencesFilter() {
           <div>
             <div style={{ display: "inline-block" }}>
               <DatePicker
-                disabled={errors !== ""}
+                disabled={errors !== "" || loading}
                 className="form-label"
                 selected={filter.startDate}
                 maxDate={new Date("2024-01-01")}
@@ -50,7 +50,7 @@ export default function AbsencesFilter() {
             </div>
             <div style={{ display: "inline-block" }}>
               <Button
-                disabled={!filter.startDate || errors !== ""}
+                disabled={!filter.startDate || errors !== "" || loading}
                 className="rc-bg-primary"
                 onClick={() => onFilterByStartDate(null)}
               >
@@ -79,7 +79,7 @@ export default function AbsencesFilter() {
               <Button
                 className="rc-bg-primary"
                 onClick={() => onFilterByEndDate(null)}
-                disabled={!filter.endDate || errors !== ""}
+                disabled={!filter.endDate || errors !== "" || loading}
               >
                 Clear
               </Button>
