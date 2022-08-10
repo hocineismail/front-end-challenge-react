@@ -34,8 +34,7 @@
   background-color: #fea33a !important;
   color: black !important ;
   font-weight: large !important;
-  border-color: transparent !important;
-
+  border-color: transparent !important; 
   width: 120px;
 }
 
@@ -47,6 +46,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
 .text-color-white {
   background-color: white;
 }
@@ -100,5 +100,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 995px) {
+  .filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
