@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Alert, Table } from "react-bootstrap";
 
 import TableBody from "../table/TableBody";
 import TableCell from "../table/TableCell";
@@ -16,7 +16,7 @@ export default function AbsencesList() {
   const { state, onFetchAbsences } = useAbsencesContext();
 
   // bsences, page, rowsPerPage, loading get them from reducer state
-  const { absences, page, rowsPerPage, loading } = state;
+  const { absences, page, rowsPerPage, loading, errors } = state;
 
   React.useEffect(() => {
     // Runs only on the first render
@@ -73,6 +73,11 @@ export default function AbsencesList() {
                 })}
         </TableBody>
       </Table>
+      {!loading && absences.length === 0 ? (
+        <Alert variant={errors !== "" ? "danger" : "warning"}>
+          {errors !== "" ? errors : "Sorry the list is emty, no results"}
+        </Alert>
+      ) : null}
     </div>
   );
 }
