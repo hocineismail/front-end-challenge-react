@@ -1,5 +1,6 @@
 import React from "react";
 import Badge from "../badge/Badge";
+import PropTypes from "prop-types";
 
 export default function TableCell({ item, badge, children }) {
   return (
@@ -16,3 +17,9 @@ export default function TableCell({ item, badge, children }) {
     </td>
   );
 }
+TableCell.propTypes = {
+  // You can declare that a prop is a specific JS
+  item: PropTypes.string,
+  badge: PropTypes.string,
+  children: PropTypes.node,
+};

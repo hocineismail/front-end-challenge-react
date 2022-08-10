@@ -22,7 +22,7 @@ export function datesAreOnSameDay(targetDate, date) {
  */
 
 function filetWithType(data, condition) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (condition !== "All") {
       let result = data.filter((item) => condition === item.type);
       resolve(result);
@@ -40,7 +40,7 @@ function filetWithType(data, condition) {
  */
 
 function filetWithEndDate(data, condition) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (condition) {
       let result = data.filter((item) =>
         datesAreOnSameDay(condition, item.endDate)
@@ -59,7 +59,7 @@ function filetWithEndDate(data, condition) {
  */
 
 function filetWithStartDate(data, condition) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (condition) {
       let result = data.filter((item) =>
         datesAreOnSameDay(condition, item.startDate)
@@ -77,7 +77,7 @@ function filetWithStartDate(data, condition) {
  * @returns {array}   list of members filtered with all conditions
  */
 export function applyFilter(filter, absences) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     filetWithType(absences, filter.type).then((data) => {
       filetWithStartDate(data, filter.startDate).then((data) => {
         filetWithEndDate(data, filter.endDate).then((result) => {

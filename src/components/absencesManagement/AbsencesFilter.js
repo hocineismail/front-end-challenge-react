@@ -51,7 +51,6 @@ export default function AbsencesFilter() {
             <div style={{ display: "inline-block" }}>
               <Button
                 disabled={!filter.startDate || errors !== ""}
-                maxDate={new Date("2024-01-01")}
                 className="rc-bg-primary"
                 onClick={() => onFilterByStartDate(null)}
               >

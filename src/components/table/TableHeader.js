@@ -1,6 +1,7 @@
 import React from "react";
 import TableRow from "./TableRow";
 
+import PropTypes from "prop-types";
 export default function TableHeader({ header }) {
   return (
     <thead data-test-id="component-table-header">
@@ -20,3 +21,7 @@ export default function TableHeader({ header }) {
     </thead>
   );
 }
+TableHeader.propTypes = {
+  // You can declare that a prop is a specific JS primitive. By default, these
+  header: PropTypes.arrayOf(PropTypes.string),
+};

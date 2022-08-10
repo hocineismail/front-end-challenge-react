@@ -25,7 +25,6 @@ export default function AbsencesList() {
   const { state, onFetchAbsences } = useAbsencesContext();
   // bsences, page, rowsPerPage, loading get them from reducer state
   const { absences, page, rowsPerPage, loading, errors } = state;
-  console.log(state);
   React.useEffect(() => {
     // Runs only on the first render
     // onFetchAbsences allows to fetch absences list from server and update reducer state
@@ -34,11 +33,7 @@ export default function AbsencesList() {
       onFetchAbsences();
     }
   }, [onFetchAbsences, loading]);
-  if (true) {
-    [...new Array(10)].map((item) => {
-      return <LoaderTable key={`key-loading-${item}`} />;
-    });
-  }
+
   return (
     <div data-test-id="component-absences-list" className="margin-card">
       <Table data-test-id="table-absences-list" responsive>

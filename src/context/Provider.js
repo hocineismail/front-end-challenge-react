@@ -1,12 +1,15 @@
 import React from "react";
 import { absencesReducer, initialState } from "../reducers/absencesReducer";
+import PropTypes from "prop-types";
 import axios from "axios";
 import {
   FETCHED_ABSENCES_ERROR,
   FETCHED_ABSENCES_SUCCESS,
   GO_TO_PAGE,
   NEXT_PAGE,
+  ON_CONFIRM_REQUEST,
   ON_FILTER,
+  ON_REJECT_REQUEST,
   PREVIOUS_PAGE,
 } from "../constants/constants";
 import { applyFilter } from "../utils/filter";
@@ -14,7 +17,8 @@ import { applyFilter } from "../utils/filter";
 //Context and Provider
 export const AbsencesContext = React.createContext(initialState);
 export const useAbsencesContext = () => React.useContext(AbsencesContext);
-const API = "http://localhost:8080/api/v1/absences";
+
+const API = "https://api.ismailhocine.com/api/v1/absences";
 
 const Provider = ({ children }) => {
   const [state, dispatch] = React.useReducer(absencesReducer, initialState);
@@ -106,7 +110,7 @@ const Provider = ({ children }) => {
     },
     onConfirmRequest: (absenceId) => {
       dispatch({
-        type: "ON_CONFIRM_REQUEST",
+        type: ON_CONFIRM_REQUEST,
         payload: {
           absenceId: absenceId,
         },
@@ -114,7 +118,7 @@ const Provider = ({ children }) => {
     },
     onRejectRequest: (absenceId) => {
       dispatch({
-        type: "ON_REJECT_REQUEST",
+        type: ON_REJECT_REQUEST,
         payload: {
           absenceId: absenceId,
         },
@@ -127,5 +131,10 @@ const Provider = ({ children }) => {
       {children}
     </AbsencesContext.Provider>
   );
+};
+
+Provider.propTypes = {
+  // You can declare that a prop is a specific JS primitive. By default, these
+  children: PropTypes.node.isRequired,
 };
 export default Provider;

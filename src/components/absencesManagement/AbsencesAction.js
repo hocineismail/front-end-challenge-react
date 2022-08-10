@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useAbsencesContext } from "../../context/Provider";
 import ICalendarLink from "react-icalendar-link";
+import PropTypes from "prop-types";
 
 export default function AbsencesAction({ status, absenceId, ics }) {
   const { onConfirmRequest, onRejectRequest } = useAbsencesContext();
@@ -45,3 +46,10 @@ export default function AbsencesAction({ status, absenceId, ics }) {
     </div>
   );
 }
+
+AbsencesAction.propTypes = {
+  // You can declare that a prop is a specific JS primitive. By default, these
+  status: PropTypes.string.isRequired,
+  absenceId: PropTypes.number.isRequired,
+  ics: PropTypes.object.isRequired,
+};
