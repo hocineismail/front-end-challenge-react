@@ -10,7 +10,7 @@ function App() {
       <div data-test-id="component-app">
         <Navbar style={{ backgroundColor: "#FEA33A" }}>
           <Container>
-            <Navbar.Brand href="#home">Crewmeiset</Navbar.Brand>
+            <Navbar.Brand href="#home">Crew Meister</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
