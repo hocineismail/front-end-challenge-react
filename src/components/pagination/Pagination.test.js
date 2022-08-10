@@ -1,24 +1,13 @@
 import Enzyme from "enzyme";
-import { render, fireEvent } from "@testing-library/react";
 import Adapter from "enzyme-adapter-react-16";
 import { shallow } from "enzyme";
 import Pagination from "./Pagination";
-import ShallowRenderer from "react-test-renderer/shallow";
+
 import React from "react";
-import { absencesReducer, initialState } from "../../reducers/absencesReducer";
+import { absencesReducer } from "../../reducers/absencesReducer";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-/**
- *Factory function to create a shallowWrapper for App component
- * @function setup
- * @param  {object} - Components props specific to this setup
- * @return {ShallowWrapper}
- */
-
-const setup = (props = {}) => {
-  return shallow(<Pagination {...props} />);
-};
 describe("Pagination:", () => {
   let realUseContext;
   let useContextMock;
@@ -40,7 +29,7 @@ describe("Pagination:", () => {
     allData: [],
     absences: [],
     page: 1,
-    totalAbsences: 0,
+    totalAbsences: 20,
     rowsPerPage: 10,
     loading: false,
     errors: "",
@@ -69,7 +58,7 @@ describe("Pagination:", () => {
           allData: [],
           absences: [],
           page: 2,
-          totalAbsences: 0,
+          totalAbsences: 20,
           rowsPerPage: 10,
           loading: false,
           errors: "",

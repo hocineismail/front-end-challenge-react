@@ -3,7 +3,10 @@ import React from "react";
 import { useAbsencesContext } from "../../context/Provider";
 import Pagination from "react-bootstrap/Pagination";
 import { generatePages } from "../../utils/generatePages";
+
+//PaginationComponent: is a component created to navigate bewteen pages by updating reducer state
 export default function PaginationComponent() {
+  //useAbsencesContext allows to user reducer state, and we can use nextPage, prevPage, goToPage funtions to update reducer state
   const { state, nextPage, prevPage, goToPage } = useAbsencesContext();
   const { loading, page, rowsPerPage, totalAbsences } = state;
   const [pages, setPages] = React.useState([1, 2, 3, 4, 5]);
@@ -21,16 +24,18 @@ export default function PaginationComponent() {
     setPages(fivePages);
   }, [page, totalAbsences, rowsPerPage]);
 
+  //hanldeNextPage allow to go to next page
   const hanldeNextPage = () => {
     nextPage();
   };
+  //handPrevPage allow to go back to previous page
   const hanldePrevPage = () => {
     prevPage();
   };
 
   return (
     <div>
-      {totalAbsences !== 0 ? (
+      {totalAbsences > 10 ? (
         <Pagination>
           <Pagination.First
             data-test-id="button-prev-page"
