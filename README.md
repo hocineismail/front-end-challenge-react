@@ -39,7 +39,21 @@ This project is a simple solution for company owners to manage sickness and vaca
 - [ ] CSSinJS is a plus: styled-components, styled-system
 
 
- 
+### UI 
+
+I want to see the absences list with pagination
+
+![alt text](https://github.com/hocineismail/front-end-challenge-react/blob/main/examples/Screenshot_20220810_192259.png?raw=true)
+
+I want to see an error state if the list is unavailable
+
+![alt text](https://github.com/hocineismail/front-end-challenge-react/blob/main/examples/Screenshot_20220810_192004.png?raw=true)
+
+I want to see a loading state until the list is available
+![alt text](https://github.com/hocineismail/front-end-challenge-react/blob/main/examples/Screenshot_20220810_192154.png?raw=true)
+
+ I want to see an empty state if there are no results
+![alt text](https://github.com/hocineismail/front-end-challenge-react/blob/main/examples/Screenshot_20220810_193522.png?raw=true)
 
 # Pre-requisites 
 - Install [Node.js](https://nodejs.org/en/)
