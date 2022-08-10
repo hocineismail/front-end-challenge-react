@@ -7,7 +7,11 @@ export default function TableHeader({ header }) {
       <TableRow data-test-id="component-table-row">
         {header.map((item) => {
           return (
-            <th key={item} data-test-id="component-table-td">
+            <th
+              key={item}
+              data-test-id="component-table-td"
+              style={{ minWidth: "150px" }}
+            >
               {item}
             </th>
           );
