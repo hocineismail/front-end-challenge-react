@@ -40,7 +40,7 @@ export default function AbsencesList() {
         <TableHeader header={header} />
         <TableBody>
           {loading ? (
-            <LoaderTable />
+            <LoaderTable data-test-id="component-loading-section" />
           ) : (
             absences
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -91,7 +91,10 @@ export default function AbsencesList() {
         </TableBody>
       </Table>
       {!loading && absences.length === 0 ? (
-        <Alert variant={errors !== "" ? "danger" : "warning"}>
+        <Alert
+          variant={errors !== "" ? "danger" : "warning"}
+          data-test-id="component-alert"
+        >
           {errors !== "" ? errors : "Sorry the list is emty, no results"}
         </Alert>
       ) : null}

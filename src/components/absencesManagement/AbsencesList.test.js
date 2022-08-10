@@ -18,7 +18,7 @@ const setup = (props = {}) => {
   return shallow(<AbsencesList {...props} />);
 };
 
-describe("Absences list Compoenent: ", () => {
+describe("Render: Absences list Compoenent: ", () => {
   let realUseContext;
   let useContextMock;
   let useReducerMock;
@@ -71,6 +71,49 @@ describe("Absences list Compoenent: ", () => {
       "data-test-id": "table-absences-list",
     });
 
+    expect(absencesComponent.length).toBe(1);
+  });
+  it("should render loading component during fetching data", () => {
+    useContextMock.mockReturnValue({
+      state: { ...initial, loading: true },
+    });
+    const wrapper = setup(<AbsencesList />);
+    const absencesComponent = wrapper.find({
+      "data-test-id": "component-loading-section",
+    });
+    expect(absencesComponent.length).toBe(1);
+  });
+
+  it("shouldn't render loading component when leading is false", () => {
+    useContextMock.mockReturnValue({
+      state: { ...initial, loading: false },
+    });
+    const wrapper = setup(<AbsencesList />);
+    const absencesComponent = wrapper.find({
+      "data-test-id": "component-loading-section",
+    });
+    expect(absencesComponent.length).toBe(0);
+  });
+
+  it("shouldn render info alert if no absences result", () => {
+    useContextMock.mockReturnValue({
+      state: { ...initial, loading: false },
+    });
+    const wrapper = setup(<AbsencesList />);
+    const absencesComponent = wrapper.find({
+      "data-test-id": "component-alert",
+    });
+    expect(absencesComponent.length).toBe(1);
+  });
+
+  it("should render info alert if no absences result", () => {
+    useContextMock.mockReturnValue({
+      state: { ...initial, absences: [] },
+    });
+    const wrapper = setup(<AbsencesList />);
+    const absencesComponent = wrapper.find({
+      "data-test-id": "component-alert",
+    });
     expect(absencesComponent.length).toBe(1);
   });
 
