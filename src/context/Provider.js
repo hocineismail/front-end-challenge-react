@@ -18,7 +18,10 @@ import { applyFilter } from "../utils/filter";
 export const AbsencesContext = React.createContext(initialState);
 export const useAbsencesContext = () => React.useContext(AbsencesContext);
 
-const API = "https://api.ismailhocine.com/api/v1/absences";
+//if you want to use external mock server
+// use this link "https://api.ismailhocine.com/api/v1/absences"
+//"http://localhost:8080/api/v1/absences" this is a local server you have to run it from api folder
+const API = "http://localhost:8080/api/v1/absences";
 
 const Provider = ({ children }) => {
   const [state, dispatch] = React.useReducer(absencesReducer, initialState);
