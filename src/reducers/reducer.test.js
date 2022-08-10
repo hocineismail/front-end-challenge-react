@@ -6,22 +6,23 @@ import {
 import { initialState, absencesReducer } from "./absencesReducer";
 
 describe("AbsencesRuducer: ", () => {
+  let mockState = {
+    allData: [],
+    absences: [],
+    types: ["All"],
+    filter: {
+      type: "All",
+      startDate: null,
+      endDate: null,
+    },
+    page: 0,
+    rowsPerPage: 10,
+    totalAbsences: 0,
+    loading: true,
+    errors: "",
+  };
   it("initialState should be emty", () => {
-    expect(initialState).toEqual({
-      allData: [],
-      absences: [],
-      types: ["All"],
-      filter: {
-        type: "All",
-        startDate: null,
-        endDate: null,
-      },
-      page: 0,
-      rowsPerPage: 10,
-      totalAbsences: 0,
-      loading: true,
-      errors: "",
-    });
+    expect(initialState).toEqual(mockState);
   });
 
   it("should update reducer store with absences list", () => {
@@ -35,15 +36,12 @@ describe("AbsencesRuducer: ", () => {
     const updatedState = absencesReducer(initialState, action);
 
     expect(updatedState).toEqual({
+      ...mockState,
+      loading: false,
       allData: [1, 2, 3, 4],
       absences: [1, 2, 3, 4],
       totalAbsences: 4,
       types: ["All", "works"],
-      filter: { type: "All", startDate: null, endDate: null },
-      page: 0,
-      rowsPerPage: 10,
-      loading: false,
-      errors: "",
     });
   });
 
@@ -53,13 +51,7 @@ describe("AbsencesRuducer: ", () => {
     };
     const updatedState = absencesReducer(initialState, action);
     expect(updatedState).toEqual({
-      allData: [],
-      absences: [],
-      totalAbsences: 0,
-      types: ["All"],
-      filter: { type: "All", startDate: null, endDate: null },
-      page: 0,
-      rowsPerPage: 10,
+      ...mockState,
       loading: false,
       errors: "Oups errors, Something wrong",
     });
@@ -70,20 +62,6 @@ describe("AbsencesRuducer: ", () => {
     };
     const updatedState = absencesReducer(initialState, action);
 
-    expect(updatedState).toEqual({
-      allData: [],
-      absences: [],
-      types: ["All"],
-      filter: {
-        type: "All",
-        startDate: null,
-        endDate: null,
-      },
-      page: 0,
-      totalAbsences: 0,
-      rowsPerPage: 10,
-      loading: true,
-      errors: "",
-    });
+    expect(updatedState).toEqual(mockState);
   });
 });

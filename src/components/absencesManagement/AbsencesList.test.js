@@ -62,7 +62,7 @@ describe("Absences list Compoenent: ", () => {
     expect(absencesComponent.length).toBe(1);
   });
 
-  it("render absences list table", () => {
+  it("render absences list table without errors:", () => {
     useContextMock.mockReturnValue({
       state: initial,
     });
@@ -89,7 +89,6 @@ describe("Absences list Compoenent: ", () => {
         .find({
           "data-test-id": "component-table-header",
         });
-
       expect(wrapperComponent.length).toBe(1);
     });
   });

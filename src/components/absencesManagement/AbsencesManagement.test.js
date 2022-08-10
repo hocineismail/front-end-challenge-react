@@ -18,7 +18,7 @@ const setup = (props = {}) => {
   return shallow(<AbsencesManagement {...props} />);
 };
 
-test("rneder absences Management without errors: ", () => {
+test("render absences Management without errors: ", () => {
   const wraper = setup();
   const absencesComponent = wraper.find({
     "data-test-id": "component-absences-management",
