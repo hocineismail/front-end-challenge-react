@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FETCHED_ABSENCES_ERROR,
   FETCHED_ABSENCES_SUCCESS,
@@ -21,7 +20,7 @@ describe("AbsencesRuducer: ", () => {
     loading: true,
     errors: "",
   };
-  it("initialState should be emty", () => {
+  test("initialState should be emty", () => {
     expect(initialState).toEqual(mockState);
   });
 
