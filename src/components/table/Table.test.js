@@ -86,7 +86,7 @@ describe("render table without errors", () => {
       </TableBody>
     );
 
-    it("table body colums should be equal to 6", () => {
+    it("table body columns should be equal to 6", () => {
       const tableHead = wrapper.find("td");
       expect(tableHead.length).toBe(6);
     });
