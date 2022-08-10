@@ -1,71 +1,79 @@
-# Getting Started with Create React App
+# Crewmeister coding challenge - Frontend (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📜 Description
 
-## Available Scripts
+This project is a simple solution for company owners to manage sickness and vacations of employees
 
-In the project directory, you can run:
+## 🌐 Links
 
-### `npm start`
+* [Deployed application on Heroku](https://stormy-earth-85572.herokuapp.com/)
+* [Api (mock server) - digitalocean](https://api.ismailhocine.com/api/v1/absences)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎯 Product Requirements And Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [x] I want to see a list of absences including the names of the employees
+- [x] I want to see the first 10 absences, with the ability to paginate
+- [x] I want to see a total number of absences
+- [x] For each absence I want to see:
+    - [x] Member name
+    - [x] Type of absence
+    - [x] Period
+    - [x] Member note (when available)
+    - [x] Status (can be 'Requested', 'Confirmed' or 'Rejected')
+    - [x] Admitter note (when available)
+- [x] I want to filter absences by type
+- [x] I want to filter absences by date
+- [x] I want to see a loading state until the list is available
+- [x] I want to see an error state if the list is unavailable
+- [x] I want to see an empty state if there are no results
+- [x] (Bonus) I can generate an iCal file and save it  
+- [x] (Feature) As an admitter I want to confirm or reject an absence request
 
-### `npm test`
+## 💻 Tech Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [x] React
+- [x] Tests: Jest + react-testing-library
+- [x] Code Linter
+- [ ] Redux is a plus
+- [ ] Typescript is a plus
+- [ ] CSSinJS is a plus: styled-components, styled-system
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Pre-requisites 
+- Install [Node.js](https://nodejs.org/en/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔨 Running Code (server)
 
-### `npm run eject`
+To run program, run the following command. 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Use the terminal to execute the following commands (Run mock server):
+    - `cd api` to go to directory api (folder) (mock server)
+    - `npm install` or `yarn install` to install the dependencies for mock server
+    - `node server.js` to run mock server
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🔨 Running Code (react)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To run program, run the following command. 
+ 
+1. Use the terminal to execute the following commands:
+    - `npm install` or `yarn install` to install the dependencies for react application
+    - `npm start` to start the the application
 
-## Learn More
+1. Open your browser on `http://localhost:3000` to see the page
+## 🔨 Running Test (react)
+1. To run tests, run the following command.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  npm run test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Author
 
-### Code Splitting
+- [@Ismail Hocine](https://github.com/hocineismail)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ✔️ Prerequisites
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# front-end-challenge-react
+* Node.js 16
