@@ -1,9 +1,16 @@
 import React from "react";
+import Badge from "../badge/Badge";
 
-export default function TableCell({ item }) {
+export default function TableCell({ item, badge }) {
   return (
     <td data-test-id="component-table-cell">
-      {item ? item : <span>&nbsp;</span>}
+      {badge ? (
+        <Badge item={item} className={`rc-badge badge-${badge}`} />
+      ) : item ? (
+        item
+      ) : (
+        <span>&nbsp;</span>
+      )}
     </td>
   );
 }
