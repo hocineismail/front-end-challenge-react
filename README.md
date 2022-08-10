@@ -32,7 +32,7 @@ This project is a simple solution for company owners to manage sickness and vaca
 ## 💻 Tech Requirements
 
 - [x] React
-- [x] Tests: Jest + react-testing-library
+- [x] Tests: Jest + react-testing-library / enzyme
 - [x] Code Linter
 - [ ] Redux is a plus
 - [ ] Typescript is a plus
