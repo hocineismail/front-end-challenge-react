@@ -23,10 +23,9 @@ const header = [
 export default function AbsencesList() {
   // useReducer for sharing state between components
   const { state, onFetchAbsences } = useAbsencesContext();
-
   // bsences, page, rowsPerPage, loading get them from reducer state
   const { absences, page, rowsPerPage, loading, errors } = state;
-
+  console.log(state);
   React.useEffect(() => {
     // Runs only on the first render
     // onFetchAbsences allows to fetch absences list from server and update reducer state
@@ -35,61 +34,65 @@ export default function AbsencesList() {
       onFetchAbsences();
     }
   }, [onFetchAbsences, loading]);
-
+  if (true) {
+    [...new Array(10)].map((item) => {
+      return <LoaderTable key={`key-loading-${item}`} />;
+    });
+  }
   return (
     <div data-test-id="component-absences-list" className="margin-card">
       <Table data-test-id="table-absences-list" responsive>
         <TableHeader header={header} />
         <TableBody>
-          {loading
-            ? [...new Array(10)].map(() => {
-                return <LoaderTable />;
+          {loading ? (
+            <LoaderTable />
+          ) : (
+            absences
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow data-test-id="table-absences-rows" key={row.id}>
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={row.name}
+                    />
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={row.type}
+                    />
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={`${row.startDate} to ${row.endDate}`}
+                    />
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={row.memberNote}
+                    />
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={row.status}
+                      badge={row.status}
+                    />
+                    <TableCell
+                      data-test-id="table-absences-col"
+                      item={row.admitterNote}
+                    />
+                    <TableCell data-test-id="table-absences-col">
+                      <AbsencesAction
+                        status={row.status}
+                        absenceId={row.id}
+                        ics={{
+                          title: `The Absences of ${row.name}`,
+                          description: `Absence of  ${row.name}, type:  ${row.type} `,
+                          startTime: new Date(row.endDate),
+                          endTime: new Date(row.endDate),
+                        }}
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
               })
-            : absences
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow data-test-id="table-absences-rows" key={row.id}>
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={row.name}
-                      />
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={row.type}
-                      />
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={`${row.startDate} to ${row.endDate}`}
-                      />
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={row.memberNote}
-                      />
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={row.status}
-                        badge={row.status}
-                      />
-                      <TableCell
-                        data-test-id="table-absences-col"
-                        item={row.admitterNote}
-                      />
-                      <TableCell data-test-id="table-absences-col">
-                        <AbsencesAction
-                          status={row.status}
-                          absenceId={row.id}
-                          ics={{
-                            title: `The Absences of ${row.name}`,
-                            description: `Absence of  ${row.name}, type:  ${row.type} `,
-                            startTime: new Date(row.endDate),
-                            endTime: new Date(row.endDate),
-                          }}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+          )}
         </TableBody>
       </Table>
       {!loading && absences.length === 0 ? (
