@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -6,7 +7,50 @@
   height: 40vmin;
   pointer-events: none;
 }
+.btn-pagination {
+  background-color: #FEA33A !important;
+  color: black!important ;
+  font-weight: large !important;
+  border-color: transparent!important;
+  
+  width: 120px;
+}
+ 
+.rc-bg-primary {
+  background-color: #FEA33A !important;
+ 
+}
 
+.filter-grid {
+  display:  grid;
+   grid-template-columns:  1fr 1fr 1fr 
+}
+.text-color-white {
+  background-color: white;
+}
+.contain {
+  margin-top: 40px;
+}
+.margin-card {
+  margin-top: 30px;
+}
+.--bs-pagination-active-bg  {
+  background-color: #FEA33A !important;
+}
+.linear-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+  height: 15px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
