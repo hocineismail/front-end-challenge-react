@@ -7,6 +7,26 @@
   height: 40vmin;
   pointer-events: none;
 }
+.rc-badge {
+    padding: 4px;
+    display: inline-block;
+    border-radius: 10px;
+    min-width: 100px;
+    text-align: center;
+}
+.badge-Confirmed { 
+   background-color: rgb(42, 152, 42) ; 
+   color: white
+}
+.badge-Requested {
+  background-color: rgb(232, 130, 13) ;
+  color: white !important;
+}
+.badge-Rejected {
+  background-color: rgb(196, 43, 43)  ;
+  color: white
+}
+
 .btn-pagination {
   background-color: #FEA33A !important;
   color: black!important ;
