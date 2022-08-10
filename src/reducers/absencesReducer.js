@@ -3,7 +3,9 @@ import {
   FETCHED_ABSENCES_SUCCESS,
   GO_TO_PAGE,
   NEXT_PAGE,
+  ON_CONFIRM_REQUEST,
   ON_FILTER,
+  ON_REJECT_REQUEST,
   PREVIOUS_PAGE,
 } from "../constants/constants";
 
@@ -69,7 +71,34 @@ export function absencesReducer(state = initialState, action) {
         ...state,
         page: action.payload.page,
       };
-
+    case ON_CONFIRM_REQUEST:
+      return {
+        ...state,
+        absences: state.absences.map((item) => {
+          if (item.id === action.payload.absenceId) {
+            return {
+              ...item,
+              status: "Confirmed",
+            };
+          } else {
+            return item;
+          }
+        }),
+      };
+    case ON_REJECT_REQUEST:
+      return {
+        ...state,
+        absences: state.absences.map((item) => {
+          if (item.id === action.payload.absenceId) {
+            return {
+              ...item,
+              status: "Rejected",
+            };
+          } else {
+            return item;
+          }
+        }),
+      };
     default:
       return state;
   }
