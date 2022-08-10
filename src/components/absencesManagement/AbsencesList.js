@@ -5,7 +5,7 @@ import TableCell from "../table/TableCell";
 import TableHeader from "../table/TableHeader";
 import TableRow from "../table/TableRow";
 import { useAbsencesContext } from "../../context/Provider";
-import LoaderTable from "../loader/LoaderTable";
+import LoadingTable from "../Loading/LoadingTable";
 import AbsencesAction from "./AbsencesAction";
 
 //header the name of each column on table head
@@ -40,7 +40,7 @@ export default function AbsencesList() {
         <TableHeader header={header} />
         <TableBody>
           {loading ? (
-            <LoaderTable data-test-id="component-loading-section" />
+            <LoadingTable data-test-id="component-loading-section" />
           ) : (
             absences
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

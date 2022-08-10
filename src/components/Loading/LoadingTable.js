@@ -1,7 +1,7 @@
 import React from "react";
 import TableRow from "../table/TableRow";
 
-export default function LoaderTable() {
+export default function LoadingTable() {
   return (
     <>
       <TableRow>
