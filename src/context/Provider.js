@@ -104,6 +104,22 @@ const Provider = ({ children }) => {
         },
       });
     },
+    onConfirmRequest: (absenceId) => {
+      dispatch({
+        type: "ON_CONFIRM_REQUEST",
+        payload: {
+          absenceId: absenceId,
+        },
+      });
+    },
+    onRejectRequest: (absenceId) => {
+      dispatch({
+        type: "ON_REJECT_REQUEST",
+        payload: {
+          absenceId: absenceId,
+        },
+      });
+    },
   };
 
   return (
