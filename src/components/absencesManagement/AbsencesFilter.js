@@ -9,7 +9,7 @@ import { useAbsencesContext } from "../../context/Provider";
 export default function AbsencesFilter() {
   const { state, onFilterByType, onFilterByStartDate, onFilterByEndDate } =
     useAbsencesContext();
-  const { filter, types } = state;
+  const { filter, types, errors } = state;
 
   return (
     <div data-test-id="component-filter">
@@ -18,6 +18,7 @@ export default function AbsencesFilter() {
           <Form.Label>Filter by type</Form.Label>
           <Form.Select
             aria-label="Default select example"
+            disabled={errors !== ""}
             onChange={(e) => onFilterByType(e.target.value)}
           >
             {types.map((item, index) => {
@@ -34,8 +35,10 @@ export default function AbsencesFilter() {
           <div>
             <div style={{ display: "inline-block" }}>
               <DatePicker
+                disabled={errors !== ""}
                 className="form-label"
                 selected={filter.startDate}
+                maxDate={new Date("2024-01-01")}
                 minDate={
                   filter.startDate
                     ? new Date(filter.startDate)
@@ -47,9 +50,10 @@ export default function AbsencesFilter() {
             </div>
             <div style={{ display: "inline-block" }}>
               <Button
+                disabled={!filter.startDate || errors !== ""}
+                maxDate={new Date("2024-01-01")}
                 className="rc-bg-primary"
                 onClick={() => onFilterByStartDate(null)}
-                disabled={!filter.startDate}
               >
                 Clear
               </Button>
@@ -62,6 +66,7 @@ export default function AbsencesFilter() {
             <div style={{ display: "inline-block" }}>
               <DatePicker
                 class="form-control"
+                disabled={errors !== ""}
                 selected={filter.endDate}
                 minDate={
                   filter.startDate
@@ -75,7 +80,7 @@ export default function AbsencesFilter() {
               <Button
                 className="rc-bg-primary"
                 onClick={() => onFilterByEndDate(null)}
-                disabled={!filter.endDate}
+                disabled={!filter.endDate || errors !== ""}
               >
                 Clear
               </Button>
