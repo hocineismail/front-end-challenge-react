@@ -4,3 +4,5 @@ export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const GO_TO_PAGE = "GO_TO_PAGE";
 export const ON_FILTER = "ON_FILTER";
+export const ON_CONFIRM_REQUEST = "ON_CONFIRM_REQUEST";
+export const ON_REJECT_REQUEST = "ON_REJECT_REQUEST";
