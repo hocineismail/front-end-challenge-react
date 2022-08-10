@@ -18,10 +18,47 @@ const setup = (props = {}) => {
   return shallow(<AbsencesManagement {...props} />);
 };
 
-test("render absences Management without errors: ", () => {
-  const wraper = setup();
-  const absencesComponent = wraper.find({
-    "data-test-id": "component-absences-management",
+describe("Absences list Compoenent: ", () => {
+  let realUseContext;
+  let useContextMock;
+  let useReducerMock;
+
+  // Setup mock
+  beforeEach(() => {
+    useReducerMock = jest.spyOn(React, "useReducer");
+    realUseContext = React.useContext;
+    useContextMock = React.useContext = jest.fn();
   });
-  expect(absencesComponent.length).toBe(1);
+
+  // Cleanup mock
+  afterEach(() => {
+    React.useContext = realUseContext;
+  });
+
+  let initial = {
+    allData: [],
+    absences: [],
+    page: 0,
+    types: ["All"],
+    filter: {
+      type: "All",
+      startDate: null,
+      endDate: null,
+    },
+    totalAbsences: 0,
+    rowsPerPage: 10,
+    loading: false,
+    errors: "",
+  };
+
+  test("render absences Management without errors: ", () => {
+    useContextMock.mockReturnValue({
+      state: initial,
+    });
+    const wraper = setup();
+    const absencesComponent = wraper.find({
+      "data-test-id": "component-absences-management",
+    });
+    expect(absencesComponent.length).toBe(1);
+  });
 });
